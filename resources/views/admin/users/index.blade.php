@@ -38,7 +38,7 @@
                             <span class="badge badge-pill badge-info">{{$role->name}}</span>
                         @endforeach
                     </td>
-                    <td>{{$user->is_active ? 'Not Active' : 'Active'}}</td>
+                    <td>{{$user->is_active ? 'Active' : 'Not Active'}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>{{$user->updated_at->diffForHumans()}}</td>
                     <td>{{$user->deleted_at}}</td>

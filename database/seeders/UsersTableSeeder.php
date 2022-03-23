@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
     {
         //
         DB::table('users')->insert([
-            'is_active' => 0,
+            'is_active' => 1,
             'name' => 'Michael',
             'email' => 'lebontje45@hotmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('users')->insert([
-            'is_active' => 0,
+            'is_active' => 1,
             'name' => 'Dylan',
             'email' => 'dylan45@hotmail.com',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),

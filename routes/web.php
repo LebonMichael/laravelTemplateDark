@@ -15,19 +15,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 
 });
 
-Auth::routes();
+Route::get('/contactformulier', 'App\Http\Controllers\ContactController@create');
+Route::post('/contactformulier', 'App\Http\Controllers\ContactController@store');
+
+Auth::routes(['verify' => true]);
+
+
 
 /** BACKEND ROUTES **/
 
-Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('homebackend');
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
-
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::resource('users', App\Http\Controllers\AdminUsersController::class);
     Route::get('users/restore/{user}','App\Http\Controllers\AdminUsersController@restore')->name('users.restore');
 
+});
+
+/** Beveiligd alle routes na admin (eerst inloggen) **/
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], function(){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('homebackend');
+    //Route::resource('photos', App\Http\Controllers\AdminPhotosController::class);
+    //Route::resource('media', App\Http\Controllers\AdminMediasController::class);
+    //Route::resource('post', App\Http\Controllers\AdminPostsController::class);
 });
