@@ -40,5 +40,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], functio
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('homebackend');
     //Route::resource('photos', App\Http\Controllers\AdminPhotosController::class);
     //Route::resource('media', App\Http\Controllers\AdminMediasController::class);
-    //Route::resource('post', App\Http\Controllers\AdminPostsController::class);
+    Route::resource('posts', App\Http\Controllers\AdminPostsController::class);
+    Route::resource('categories', App\Http\Controllers\AdminPostsCategoriesController::class);
 });

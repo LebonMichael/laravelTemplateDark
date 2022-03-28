@@ -38,9 +38,11 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-            <a class="navbar-brand brand-logo" href="{{ route('homebackend') }}"><img src="{{asset('assets/images/logo.svg')}}" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="{{ route('homebackend') }}" ><img src="{{asset('assets/images/logo-mini.svg')}}"
-                                                                      alt="logo"/></a>
+            <a class="navbar-brand brand-logo" href="{{ route('homebackend') }}"><img
+                    src="{{asset('assets/images/logo.svg')}}" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="{{ route('homebackend') }}"><img
+                    src="{{asset('assets/images/logo-mini.svg')}}"
+                    alt="logo"/></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -230,7 +232,7 @@
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-
+                <!--                start links to users-->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false"
                        aria-controls="users-layouts">
@@ -246,6 +248,43 @@
                         </ul>
                     </div>
                 </li>
+                <!--end link users-->
+
+                <!--start links to posts-->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#posts" aria-expanded="false"
+                       aria-controls="posts-layouts">
+                        <span class="menu-title">Posts</span>
+                        <i class="menu-arrow"></i>
+                        <i class="fa fa-pencil-square-o"></i>
+                    </a>
+                    <div class="collapse" id="posts">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="{{route('posts.index')}}">All Posts</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('posts.create')}}">Create Post</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--end link posts-->
+
+                <!--start links to categories-->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false"
+                       aria-controls="posts-layouts">
+                        <span class="menu-title">Categories</span>
+                        <i class="menu-arrow"></i>
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                    <div class="collapse" id="categories">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}">All Categories</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('categories.create')}}">Create Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--end links to categories-->
 
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#apps" aria-expanded="false"
