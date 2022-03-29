@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminPhotoCrontroller extends Controller
+class AdminPhotosController extends Controller
 {
     /**
      * Display a listing of the resource.

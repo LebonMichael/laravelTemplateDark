@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            //$table->unsignedInteger('photo_id')->index();
-            //$table->foreign('photo_id')->unsigned()->index();
-            $table->integer('photo_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
-            //$table->integer('category_id')->unsigned()->index();
-            $table->string('title');
-            $table->string('slug')->unique();
+            $table->foreignId('post_id')->index();
+            $table->unsignedBigInteger('post_id')->index();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('is_active')->default(0);
+            $table->unsignedBigInteger('photo_id');
             $table->text('body');
             $table->timestamps();
         });
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

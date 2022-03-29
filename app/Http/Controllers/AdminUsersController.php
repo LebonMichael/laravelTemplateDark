@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UsersSoftDelete;
 use App\Http\Requests\UsersEditRequest;
 use App\Http\Requests\UsersRequest;
 use App\Models\Photo;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -20,9 +22,11 @@ class AdminUsersController extends Controller
 
     public function index()
     {
-        $users = User::withTrashed()->orderBy('updated_at', 'desc')->paginate(20);
+        $id = Auth::user()->id;
+        $mainUser = User::findOrFail($id);
+        $users = User::with('photo','roles')->withTrashed()->orderBy('updated_at', 'desc')->paginate(20);
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'mainUser'));
     }
 
     public function create()
@@ -63,7 +67,9 @@ class AdminUsersController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'id')->all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $id = Auth::user()->id;
+        $mainUser = User::findOrFail($id);
+        return view('admin.users.edit', compact('user', 'roles','mainUser'));
     }
 
     public function update(UsersEditRequest $request, $id)
@@ -93,8 +99,8 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        UsersSoftDelete::dispatch($user);
         $user->delete();
-
         Session::flash('user_message', $user->name . ' was deleted!');
         return redirect('/admin/users');
     }

@@ -27,7 +27,7 @@ class PostFactory extends Factory
         return [
 
             'user_id' => $this->faker->randomElement($users),
-            'category_id' => $this->faker->numberBetween($min = 1, $max = 3),
+            //'category_id' => $this->faker->numberBetween($min = 1, $max = 3),
             'photo_id' => $this->faker->numberBetween($min = 1, $max = 2),
             'title' => $title,
             'slug' => $slug,

@@ -31,19 +31,12 @@
             <tbody>
             @if($posts)
                 @foreach($posts as $post)
-
                     <tr>
                         <td>{{$post->id}}</td>
-                        {{--                <td>{{$post->photo_id}}</td>--}}
-                        {{--                <td>{{$post->photo ? $post->photo->file : 'http://via.placeholder/com/62'}}</td>--}}
                         <td>
-                            <img width="auto" height="62"
-                                 src="{{$post->photo ? asset($post->photo->file) : 'http://via.placeholder.com/62' }}"
-                                 alt="{{$post->title}}">
+                            <img width="auto" height="62" src="{{$post->photo ? asset($post->photo->file) : 'http://via.placeholder.com/62'}}" alt="{{$post->title}}">
                         </td>
-
                         <td>{{$post->user ? $post->user->name : 'Username not known'}}</td>
-                        {{--                <td>{{$post->categories->name}}</td>--}}
                         <td>
                             @if($post->categories)
                                 @foreach($post->categories as $category)
@@ -64,11 +57,9 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-{{--                            <a class="btn btn-success mx-1" href="{{route('home.posts', $post)}}"><i class="fas fa-eye" ></i></a>--}}
                         </td>
                         <td>{{$post->created_at->diffForHumans()}}</td>
                         <td>{{$post->updated_at->diffForHumans()}}</td>
-{{--                        <td>{{$post->deleted_at ? $post->deleted_at->diffForHumans() : ''}}</td>--}}
                     </tr>
                 @endforeach
             @else

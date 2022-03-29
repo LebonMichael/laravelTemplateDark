@@ -63,7 +63,7 @@
                     <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         <div class="nav-profile-img">
-                            <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="image">
+                            <img height="62" width="auto" src="{{$mainUser->photo ? asset($mainUser->photo->file) : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
                             <span class="availability-status online"></span>
                         </div>
                         <div class="nav-profile-text">
@@ -215,13 +215,17 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="../assets/images/faces/face1.jpg" alt="profile">
+                            <img height="62" width="auto" src="{{$mainUser->photo ? asset($mainUser->photo->file) : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
                             <span class="login-status online"></span>
                             <!--change to offline or busy as needed-->
                         </div>
                         <div class="nav-profile-text d-flex flex-column">
-                            <span class="font-weight-bold mb-2">David Grey. H</span>
-                            <span class="text-secondary text-small">Project Manager</span>
+                            <span class="font-weight-bold mb-2">{{ Auth::user()->name }}</span>
+                            <span class="text-secondary text-small">
+                                @foreach($mainUser->roles as $role)
+                                    <span class="badge badge-pill badge-info">{{$role->name}}</span>
+                                @endforeach
+                            </span>
                         </div>
                         <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                     </a>
@@ -232,9 +236,11 @@
                         <i class="mdi mdi-home menu-icon"></i>
                     </a>
                 </li>
-                <!--                start links to users-->
+
+
+                <!--start links to users-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false"
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#users" aria-expanded="true"
                        aria-controls="users-layouts">
                         <span class="menu-title">Users</span>
                         <i class="menu-arrow"></i>
@@ -252,7 +258,7 @@
 
                 <!--start links to posts-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#posts" aria-expanded="false"
+                    <a class="nav-link" data-bs-toggle="collapse" href="#posts" aria-expanded="true"
                        aria-controls="posts-layouts">
                         <span class="menu-title">Posts</span>
                         <i class="menu-arrow"></i>
@@ -271,16 +277,32 @@
                 <!--start links to categories-->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false"
-                       aria-controls="posts-layouts">
+                       aria-controls="categories">
                         <span class="menu-title">Categories</span>
                         <i class="menu-arrow"></i>
                         <i class="fa fa-navicon"></i>
                     </a>
                     <div class="collapse" id="categories">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}">All Categories</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('categories.create')}}">Create Category</a>
+                            <li class="nav-item"><a class="nav-link" href="{{route('postcategories.index')}}">All Categories</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('postcategories.create')}}">Create Category</a>
                             </li>
+                        </ul>
+                    </div>
+                </li>
+                <!--end links to categories-->
+
+                <!--start links to categories-->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#comments" aria-expanded="false"
+                       aria-controls="comments">
+                        <span class="menu-title">Comments</span>
+                        <i class="menu-arrow"></i>
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                    <div class="collapse" id="comments">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="{{route('comments.index')}}">All Comments</a></li>
                         </ul>
                     </div>
                 </li>
