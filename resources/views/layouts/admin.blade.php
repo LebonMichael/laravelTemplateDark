@@ -15,6 +15,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
+    <link rel="stylesheet" href="{{asset('assets/vendors/dropify/dropify.min.css')}}">
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
@@ -63,7 +64,7 @@
                     <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         <div class="nav-profile-img">
-                            <img height="62" width="auto" src="{{$mainUser->photo ? asset($mainUser->photo->file) : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
+                            <img height="62" width="auto" src="{{$mainUser->photo ? asset('img/users') . $mainUser->photo->file : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
                             <span class="availability-status online"></span>
                         </div>
                         <div class="nav-profile-text">
@@ -215,7 +216,7 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img height="62" width="auto" src="{{$mainUser->photo ? asset($mainUser->photo->file) : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
+                            <img height="62" width="auto" src="{{$mainUser->photo ? asset('img/users') . $mainUser->photo->file : 'https://via.placeholder.com/62'}}" alt="{{$mainUser->name}}">
                             <span class="login-status online"></span>
                             <!--change to offline or busy as needed-->
                         </div>
@@ -258,7 +259,7 @@
 
                 <!--start links to posts-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#posts" aria-expanded="true"
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#posts" aria-expanded="true"
                        aria-controls="posts-layouts">
                         <span class="menu-title">Posts</span>
                         <i class="menu-arrow"></i>
@@ -276,7 +277,7 @@
 
                 <!--start links to categories-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#categories" aria-expanded="false"
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#categories" aria-expanded="false"
                        aria-controls="categories">
                         <span class="menu-title">Categories</span>
                         <i class="menu-arrow"></i>
@@ -284,8 +285,8 @@
                     </a>
                     <div class="collapse" id="categories">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="{{route('postcategories.index')}}">All Categories</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('postcategories.create')}}">Create Category</a>
+                            <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}">All Categories</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('categories.create')}}">Create Category</a>
                             </li>
                         </ul>
                     </div>
@@ -294,7 +295,7 @@
 
                 <!--start links to categories-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#comments" aria-expanded="false"
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#comments" aria-expanded="false"
                        aria-controls="comments">
                         <span class="menu-title">Comments</span>
                         <i class="menu-arrow"></i>
@@ -308,367 +309,50 @@
                 </li>
                 <!--end links to categories-->
 
+                <!--start links to brands-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#apps" aria-expanded="false"
-                       aria-controls="apps">
-                        <span class="menu-title">Apps</span>
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#brands" aria-expanded="false"
+                       aria-controls="brands">
+                        <span class="menu-title">Brands</span>
                         <i class="menu-arrow"></i>
-                        <i class="mdi mdi-cart-arrow-down menu-icon"></i>
+                        <i class="fa fa-navicon"></i>
                     </a>
-                    <div class="collapse" id="apps">
+                    <div class="collapse" id="brands">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/apps/kanban-board.html">kanban-board</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/apps/todo.html">Todo List</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/apps/tickets.html">Tickets</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/apps/chats.html">Chats</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/widgets.html">
-                        <span class="menu-title">Widgets</span>
-                        <i class="mdi mdi-forum menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-layouts" aria-expanded="false"
-                       aria-controls="sidebar-layouts">
-                        <span class="menu-title">Sidebar Layouts</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-playlist-play menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="sidebar-layouts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/layout/compact-menu.html">Compact
-                                    menu</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/layout/sidebar-collapsed.html">Icon
-                                    menu</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/layout/sidebar-hidden.html">Sidebar
-                                    Hidden</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/layout/sidebar-hidden-overlay.html">Sidebar
-                                    Overlay</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/layout/sidebar-fixed.html">Sidebar
-                                    Fixed</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                       aria-controls="ui-basic">
-                        <span class="menu-title">Basic UI Elements</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/ui-features/accordions.html">Accordions</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/badges.html">Badges</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/breadcrumbs.html">Breadcrumbs</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/modals.html">Modals</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/progress.html">Progress
-                                    bar</a></li>
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/ui-features/pagination.html">Pagination</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/tabs.html">Tabs</a></li>
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/ui-features/typography.html">Typography</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/tooltips.html">Tooltip</a>
+                            <li class="nav-item"><a class="nav-link" href="{{route('brands.index')}}">All Brands</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('brands.create')}}">Create Brand</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                <!--end links to brands-->
+
+                <!--start links to products-->
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-advanced" aria-expanded="false"
-                       aria-controls="ui-advanced">
-                        <span class="menu-title">Advanced UI</span>
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#products" aria-expanded="false"
+                       aria-controls="products">
+                        <span class="menu-title">Products</span>
                         <i class="menu-arrow"></i>
-                        <i class="mdi mdi-cards-variant menu-icon"></i>
+                        <i class="fa fa-navicon"></i>
                     </a>
-                    <div class="collapse" id="ui-advanced">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/dragula.html">Dragula</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="pages/ui-features/clipboard.html">Clipboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/context-menu.html">Context
-                                    menu</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/slider.html">Slider</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/colcade.html">Colcade</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/carousel.html">Carousel</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/loaders.html">Loaders</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/ui-features/treeview.html">Tree
-                                    View</a></li>
-                        </ul>
+                    <div class="collapse" id="products">
+                        <div class="collapse-inner">
+                            <h6 class="collapse-header">Product Pages:</h6>
+                            <ul class="nav sub-menu">
+                                <li class="nav-item"> <a class="collapse-item nav-link" href="{{route('products.index')}}">All Products Categories</a></li>
+                                <li class="nav-item">  <a class="collapse-item nav-link" href="{{route('products.create')}}">Create Product Category</a></li>
+                            </ul>
+                        </div>
+                        <div class="collapse-inner">
+                            <h6 class="collapse-header">Product Categories Pages:</h6>
+                            <ul class="nav sub-menu">
+                                <li class="nav-item"> <a class="collapse-item nav-link" href="{{route('productcategories.index')}}">All Products Categories</a></li>
+                                <li class="nav-item">  <a class="collapse-item nav-link" href="{{route('productcategories.create')}}">Create Product Category</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/popups.html">
-                        <span class="menu-title">Popups</span>
-                        <i class="mdi mdi-forum menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/ui-features/notifications.html">
-                        <span class="menu-title">Notifications</span>
-                        <i class="mdi mdi-bell-ring menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false"
-                       aria-controls="icons">
-                        <span class="menu-title">Icons</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="icons">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/icons/mdi.html">Material</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/icons/flag-icons.html">Flag icons</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/icons/font-awesome.html">Font
-                                    Awesome</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/icons/simple-line-icon.html">Simple
-                                    line icons</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/icons/themify.html">Themify icons</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#forms" aria-expanded="false"
-                       aria-controls="forms">
-                        <span class="menu-title">Forms</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="forms">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Form
-                                    Elements</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/advanced_elements.html">Advanced
-                                    Forms</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/validation.html">Validation</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/wizard.html">Wizard</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/forms/text_editor.html">
-                        <span class="menu-title">Text editors</span>
-                        <i class="mdi mdi-file-document menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/forms/code_editor.html">
-                        <span class="menu-title">Code editors</span>
-                        <i class="mdi mdi-code-not-equal-variant menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
-                       aria-controls="charts">
-                        <span class="menu-title">Charts</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="charts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/morris.html">Morris</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/flot-chart.html">Flot</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/google-charts.html">Google
-                                    charts</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/sparkline.html">Sparkline js</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/c3.html">C3 charts</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/chartist.html">Chartist</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/charts/justGage.html">JustGage</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
-                       aria-controls="tables">
-                        <span class="menu-title">Tables</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-table-large menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="tables">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/tables/basic-table.html">Basic
-                                    table</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/tables/data-table.html">Data table</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/tables/js-grid.html">Js-grid</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/tables/sortable-table.html">Sortable
-                                    table</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#maps" aria-expanded="false"
-                       aria-controls="maps">
-                        <span class="menu-title">Maps</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-map-marker-radius menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="maps">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/maps/google-maps.html">Google Maps</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/maps/mapael.html">Mapael</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/maps/vector-map.html">Vector map</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false"
-                       aria-controls="auth">
-                        <span class="menu-title">User Pages</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-lock menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="auth">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/multi-level-login.html"> Multi
-                                    Level Login </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/register.html"> Register </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/register-2.html"> Register
-                                    2 </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/lock-screen.html">
-                                    Lockscreen </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false"
-                       aria-controls="error">
-                        <span class="menu-title">Error pages</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-security menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="error">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
-                       aria-controls="general-pages">
-                        <span class="menu-title">General Pages</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-medical-bag menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="general-pages">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/blank-page.html"> Blank
-                                    Page </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/landing-page.html"> Landing
-                                    Page </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/profile.html"> Profile </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/faq.html"> FAQ </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/faq-2.html"> FAQ 2 </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/news-grid.html"> News grid </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/timeline.html"> Timeline </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/search-results.html"> Search
-                                    Results </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/portfolio.html"> Portfolio </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/user-listing.html"> User
-                                    Listing </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#e-commerce" aria-expanded="false"
-                       aria-controls="e-commerce">
-                        <span class="menu-title">E-commerce</span>
-                        <i class="menu-arrow"></i>
-                        <i class="mdi mdi-shopping menu-icon"></i>
-                    </a>
-                    <div class="collapse" id="e-commerce">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/email-template.html"> Email
-                                    Templates </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/invoice.html"> Invoice </a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/pricing-table.html"> Pricing
-                                    Table </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/product-catalogue.html">
-                                    Product Catalogue </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/project-list.html"> Project
-                                    List </a></li>
-                            <li class="nav-item"><a class="nav-link" href="pages/samples/orders.html"> Orders </a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/email.html">
-                        <span class="menu-title">E-mail</span>
-                        <i class="mdi mdi-email menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/calendar.html">
-                        <span class="menu-title">Calendar</span>
-                        <i class="mdi mdi-calendar-today menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="pages/apps/gallery.html">
-                        <span class="menu-title">Gallery</span>
-                        <i class="mdi mdi-image-filter-frames menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="http://www.bootstrapdash.com/demo/purple/jquery/documentation/documentation.html"
-                       target="_blank">
-                        <span class="menu-title">Documentation</span>
-                        <i class="mdi mdi-file-document-box menu-icon"></i>
-                    </a>
-                </li>
-                <li class="nav-item sidebar-actions">
-              <span class="nav-link">
-                <div class="border-bottom">
-                  <h6 class="font-weight-normal mb-3">Projects</h6>
-                </div>
-                <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button>
-                <div class="mt-4">
-                  <div class="border-bottom">
-                    <p class="text-secondary">Categories</p>
-                  </div>
-                  <ul class="gradient-bullet-list mt-4">
-                    <li>Free</li>
-                    <li>Pro</li>
-                  </ul>
-                </div>
-              </span>
-                </li>
+                <!--end links to products-->
             </ul>
         </nav>
         <!-- partial -->
@@ -1035,6 +719,8 @@
 <script src="{{asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
+<script src="{{asset('assets/vendors/dropify/dropify.min.js')}}"></script>
+<script src="{{asset('assets/js/dropify.js')}}"></script>
 <script src="{{asset('assets/js/off-canvas.js')}}"></script>
 <script src="{{asset('assets/js/hoverable-collapse.js')}}"></script>
 <script src="{{asset('assets/js/misc.js')}}"></script>

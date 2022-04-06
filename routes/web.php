@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('home');
 
 });
-
+Route::resource('/home', \App\Http\Controllers\FrontendHomeController::class);
 Route::get('/contactformulier', 'App\Http\Controllers\ContactController@create');
 Route::post('/contactformulier', 'App\Http\Controllers\ContactController@store');
 
@@ -44,6 +44,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified']], functio
     Route::resource('photos', App\Http\Controllers\AdminPhotosController::class);
     //Route::resource('media', App\Http\Controllers\AdminMediasController::class);
     Route::resource('posts', App\Http\Controllers\AdminPostsController::class);
-    Route::resource('postcategories', App\Http\Controllers\AdminPostsCategoriesController::class);
-    Route::get('postcategories/restore/{category}','App\Http\Controllers\AdminPostsCategoriesController@restore')->name('postcategories.restore');
+    Route::resource('categories', App\Http\Controllers\AdminPostsCategoriesController::class);
+    Route::get('categories/restore/{category}','App\Http\Controllers\AdminPostsCategoriesController@restore')->name('categories.restore');
+    Route::resource('products', \App\Http\Controllers\AdminProductsController::class);
+    Route::resource('brands', \App\Http\Controllers\AdminBrandsController::class);
+    Route::resource('productcategories',\App\Http\Controllers\AdminProductCategoryController::class);
+    Route::get('products/brand/{id}','App\Http\Controllers\AdminProductsController@productsPerBrand')->name('productsPerBrand');
 });

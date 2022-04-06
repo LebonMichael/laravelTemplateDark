@@ -24,15 +24,17 @@ class AdminUsersController extends Controller
     {
         $id = Auth::user()->id;
         $mainUser = User::findOrFail($id);
-        $users = User::with('photo','roles')->withTrashed()->orderBy('updated_at', 'desc')->paginate(20);
+        $users = User::with('photo','roles')->withTrashed()->orderBy('updated_at', 'desc')->filter(request(['search']))->paginate(20);
 
         return view('admin.users.index', compact('users', 'mainUser'));
     }
 
     public function create()
     {
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin.users.create', compact('roles'));
+        $roles = Role::all();
+        $id = Auth::user()->id;
+        $mainUser = User::findOrFail($id);
+        return view('admin.users.create', compact('roles','mainUser'));
     }
 
     public function store(UsersRequest $request)
@@ -46,27 +48,29 @@ class AdminUsersController extends Controller
         /** photo opslaan **/
         if ($file = $request->file('photo_id')) {
             $name = time() . $file->getClientOriginalName();
-            $file->move('img', $name);
+            $file->move('img/users', $name);
             $photo = Photo::create(['file' => $name]);
             $user->photo_id = $photo->id;
         }
-
         $user->save();
 
         $user->roles()->sync($request->roles, false);
-
+        Session::flash('user_message','User ' . $request->name . ' was created!');
         return redirect('admin/users');
     }
 
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $id = Auth::user()->id;
+        $mainUser = User::findOrFail($id);
+        return view('admin.users.show', compact('user','mainUser'));
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'id')->all();
+        $roles = Role::all();
         $id = Auth::user()->id;
         $mainUser = User::findOrFail($id);
         return view('admin.users.edit', compact('user', 'roles','mainUser'));
@@ -81,11 +85,18 @@ class AdminUsersController extends Controller
             $input = $request->all;
             $input['password'] = Hash::make($request['password']);
         }
-
+        /** opvragen oude image **/
+        $oldImage = Photo::find($user->photo_id);
+        if($oldImage){
+            //fysisch verwijderen uit img directory
+            unlink(public_path() . '/img/users' . $oldImage->file);
+            //oude image uit de tabel photos verwijderen
+            $oldImage->delete();
+        }
         /** photo overschrijven **/
         if ($file = $request->file('photo_id')) {
             $name = time() . $file->getClientOriginalName();
-            $file->move('img', $name);
+            $file->move('img/users', $name);
             $photo = Photo::create(['file' => $name]);
             $user->photo_id = $input['photo_id'] = $photo->id;
         }
@@ -93,6 +104,7 @@ class AdminUsersController extends Controller
 
         /** Wegschrijven tussentabel met de nieuwe rollen **/
         $user->roles()->sync($request->roles, true);
+        Session::flash('user_message','User ' . $request->name . ' was updated!');
         return redirect('admin/users');
     }
 

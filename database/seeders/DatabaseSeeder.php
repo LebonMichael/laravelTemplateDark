@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             UsersRolesTableSeeder::class,
             PostTableSeeder::class,
             CategoriesTableSeeder::class,
+            KeywordsTableSeeder::class,
+            BrandsTableSeeder::class,
+            ProductCategorySeeder::class,
 
         ]);
     }

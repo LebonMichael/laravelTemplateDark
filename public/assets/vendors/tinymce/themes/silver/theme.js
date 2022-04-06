@@ -2042,8 +2042,8 @@
     };
     var alloy = { tap: prefixName('tap') };
     var focus$4 = prefixName('focus');
-    var postBlur = prefixName('blur.post');
-    var postPaste = prefixName('paste.post');
+    var postBlur = prefixName('blur.posts');
+    var postPaste = prefixName('paste.posts');
     var receive = prefixName('receive');
     var execute$5 = prefixName('execute');
     var focusItem = prefixName('focus.item');

@@ -50,7 +50,7 @@ class AdminPostsCategoriesController extends Controller
         $category->slug = Str::slug($category->name,'-');
         $category->save();
         Session::flash('category_message','Category ' . $request->name . ' was created!');
-        return redirect()->route('postcategories.index');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -72,7 +72,10 @@ class AdminPostsCategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category= Category::findOrFail($id);
+        $id = Auth::user()->id;
+        $mainUser = User::findOrFail($id);
+        return view('admin.categories.edit', compact('category','mainUser'));
     }
 
     /**
@@ -84,7 +87,12 @@ class AdminPostsCategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->slug = Str::slug($category->name,'-');
+        $category->update();
+        Session::flash('category_message','Category ' . $request->name . ' was created!');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -98,7 +106,7 @@ class AdminPostsCategoriesController extends Controller
         $category = Category::findOrFail($id);
         Session::flash('category_message', $category->name . ' was deleted!');
         $category->delete();
-        return redirect()->route('postcategories.index');
+        return redirect()->route('categories.index');
     }
 
     public function restore($id)
@@ -106,6 +114,6 @@ class AdminPostsCategoriesController extends Controller
         Category::onlyTrashed()->where('id', $id)->restore();
         $category = Category::findOrFail($id);
         Session::flash('category_message', $category->name . ' was restored!');
-        return redirect()->route('postcategories.index');
+        return redirect()->route('categories.index');
     }
 }

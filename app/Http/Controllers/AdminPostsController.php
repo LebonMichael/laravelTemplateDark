@@ -22,7 +22,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('photo','user','categories')->paginate(15);
+        $posts = Post::with('photo','user','categories')->filter(request(['search']))->paginate(15);
         Session::flash('user_message', 'No posts found');
         $id = Auth::user()->id;
         $mainUser = User::findOrFail($id);
@@ -59,12 +59,12 @@ class AdminPostsController extends Controller
         if ($file = $request->file('photo_id')) {
             /**wegschrijven naar de img folder**/
             $name = time() . $file->getClientOriginalName();
-            $file->move('img', $name);
+            $file->move('img/posts', $name);
             /**wegschrijven naar de photo table**/
             $photo = Photo::create(['file' => $name]);
             $post['photo_id'] = $photo->id;
         }
-        /** wegschrijven naar de post table **/
+        /** wegschrijven naar de posts table **/
         $post->save();
 
         /** de gekozen categoriëen wegschrijven naar de tussentabel category_post**/
@@ -111,11 +111,7 @@ class AdminPostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        //opzoeken van de post die aangepast dient te worden
         $post = Post::findOrFail($id);
-        //opgezochte post wordt vervangen met de nieuwe ingevulde waarden
-        //uit het formulier
         $post->title = $request->title;
         $post->slug = Str::slug($post->title,'-');
         $post->body = $request->body;
@@ -124,15 +120,12 @@ class AdminPostsController extends Controller
             /** opvragen oude image **/
             $oldImage = Photo::find($post->photo_id);
             if($oldImage){
-                //fysisch verwijderen uit img directory
-                unlink(public_path() . $oldImage->file);
-                //oude image uit de tabel photos verwijderen
+                unlink(public_path() . '/img/posts/' . $oldImage->file);
                 $oldImage->delete();
             }
-            //vanaf hier wordt de nieuwe photo opgeslagen.
             /**wegschrijven naar de img folder**/
             $name = time(). $file->getClientOriginalName();
-            $file->move('img', $name);
+            $file->move('img/posts', $name);
             /**wegschrijven naar de photo table**/
             $photo = Photo::create(['file'=>$name]);
             $post->photo_id = $photo->id;
@@ -154,11 +147,11 @@ class AdminPostsController extends Controller
         $post = Post::findOrFail($id);
         //fysisch verwijderen img tabel
         if($post->photo){
-            unlink(public_path() . $post->photo->file);
+            unlink(public_path() . '/img/posts/' . $post->photo->file);
             //photo deleten uit photo tabel
             $post->photo->delete();
         }
-        //de post zelf deleten
+        //de posts zelf deleten
         $post->delete();
         return redirect()->route('posts.index');
     }

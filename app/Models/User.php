@@ -27,23 +27,36 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
+    public function roles()
+    {
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
-    public function photo(){
+    public function photo()
+    {
         return $this->belongsTo(Photo::class);
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-   public function isAdmin(){
-        foreach($this->roles as $role){
-            if($role->name == 'administrator' && $this->is_active == 1){
+    public function isAdmin()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->name == 'administrator' && $this->is_active == 1) {
                 return true;
             }
+        }
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query
+                ->where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('email', 'like', '%' . request('search') . '%');
         }
     }
 }

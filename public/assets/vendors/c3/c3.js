@@ -381,7 +381,7 @@
                   .enter()
                   .insert('g', '.domain')
                   .attr('class', 'tick')
-                  .style('opacity', 1e-6), 
+                  .style('opacity', 1e-6),
               // MEMO: No exit transition. The reason is this transition affects max tick width calculation because old tick will be included in the ticks.
               tickExit = ticks.exit().remove(), tickUpdate = ticks.merge(tickEnter), tickTransform, tickX, tickY;
               if (params.isCategory) {
@@ -7340,9 +7340,9 @@
       }
       else if (showVerticalDataLabel) {
           lengths = $$.getDataLabelLength(yDomainMin, yDomainMax, 'height');
-          var pixelsToAxisPadding = $$.getY(config["axis_" + axisId + "_type"], 
+          var pixelsToAxisPadding = $$.getY(config["axis_" + axisId + "_type"],
           // input domain as pixels
-          [0, config.axis_rotated ? $$.width : $$.height], 
+          [0, config.axis_rotated ? $$.width : $$.height],
           // output range as axis padding
           [0, domainLength]);
           padding_top += pixelsToAxisPadding(lengths[1]);

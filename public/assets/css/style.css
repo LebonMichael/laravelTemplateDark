@@ -4161,7 +4161,7 @@ textarea.form-control-lg {
   line-height: 1;
   color: #212529;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
   background-color: #e9ecef;
   border: 1px solid #ced4da;
   border-radius: 2px; }
@@ -15705,7 +15705,7 @@ dl {
     vertical-align: middle;
     font-size: 0.875rem;
     line-height: 1;
-    white-space: nowrap;
+    white-space: normal;
     padding: 0.9375rem; }
     .table th img, .jsgrid .jsgrid-table th img,
     .table td img,
@@ -16451,7 +16451,7 @@ dl {
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 100%;
-  white-space: nowrap;
+  white-space: normal;
   max-width: 70%; }
 
 .list-item {
@@ -16479,7 +16479,7 @@ dl {
       margin-bottom: 0;
       margin-right: 10px;
       color: #9c9fa6;
-      white-space: nowrap; }
+      white-space: normal; }
     .list-item .content .time {
       color: #9c9fa6;
       margin-bottom: 3px; }
@@ -16488,14 +16488,14 @@ dl {
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 100%;
-      white-space: nowrap; }
+      white-space: normal; }
     .list-item .content .review-text {
       margin-bottom: 0;
       font-weight: 300;
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 100%;
-      white-space: nowrap;
+      white-space: normal;
       max-width: 95%; }
 
 .todo-list .todo-item {
@@ -16773,13 +16773,13 @@ dl {
         max-width: 93%;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap; }
+        white-space: normal; }
     .email-wrapper .mail-list-container .mail-list .details {
       width: 5.5%; }
       .email-wrapper .mail-list-container .mail-list .details .date {
         text-align: right;
         margin: auto 15px auto 0;
-        white-space: nowrap; }
+        white-space: normal; }
       .email-wrapper .mail-list-container .mail-list .details i {
         margin: auto 0;
         color: #ddd; }
@@ -20310,7 +20310,7 @@ footer {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        white-space: nowrap;
+        white-space: normal;
         padding: 1.125rem 0 1.125rem 0;
         color: #ffffff;
         -webkit-transition-duration: 0.45s;

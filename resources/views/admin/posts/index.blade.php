@@ -3,17 +3,21 @@
     <div class="col-12">
         <div class="row">
             <div class="col-12 mb-3">
-                <h1>Posts</h1>
-                <form>
-                    <input type="text" name="search" class="form-control bg-gray-300 border-0 small"
-                           placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                </form>
+                <div class="border border-2 rounded-3 my-3">
+                    <h1 class="text-center">All Posts</h1>
+                </div>
+                <div class="border border-2 rounded-3 my-3">
+                    <form>
+                        <input type="text" name="search" class="form-control bg-gray-300 border-0 small"
+                               placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 my-3">
             <a href="{{route('posts.create')}}" class="btn btn-info">Create post</a>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped bg-gradient">
             <thead>
             <tr>
                 <th>Id</th>
@@ -22,10 +26,9 @@
                 <th>Category</th>
                 <th>Title</th>
                 <th>Body</th>
-                <th>Actions</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th>Deleted at</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -34,32 +37,31 @@
                     <tr>
                         <td>{{$post->id}}</td>
                         <td>
-                            <img width="auto" height="62" src="{{$post->photo ? asset($post->photo->file) : 'http://via.placeholder.com/62'}}" alt="{{$post->title}}">
+                            <img width="auto" height="62" src="{{$post->photo ? asset('img/posts') . $post->photo->file : 'http://via.placeholder.com/62'}}" alt="{{$post->title}}">
                         </td>
                         <td>{{$post->user ? $post->user->name : 'Username not known'}}</td>
                         <td>
                             @if($post->categories)
                                 @foreach($post->categories as $category)
-                                    <span class="badge badge-pill badge-info">{{$category->name}}</span>
+                                    <span class="badge badge-pill badge-info m-1">{{$category->name}}</span>
                                 @endforeach
                             @endif
                         </td>
                         <td>{{$post->title}}</td>
                         <td>{{$post->body}}</td>
-                        <td class="d-flex flex-row">
-                            {{--                    //route naar edit--}}
-                            <div class="d-flex flex-row">
-                                <a class="btn btn-warning btn-sm" href="{{route('posts.show', $post)}}">Show</a>
-                                <a class="btn btn-info btn-sm mx-1" href="{{route('posts.edit', $post->id)}}">Edit</a>
+                        <td>{{$post->created_at->diffForHumans()}}</td>
+                        <td>{{$post->updated_at->diffForHumans()}}</td>
+                        <td>
+                            <div class="d-flex">
+                                <a class="btn btn-warning btn-sm m-1" href="{{route('posts.show', $post)}}">Show</a>
+                                <a class="btn btn-info btn-sm m-1" href="{{route('posts.edit', $post->id)}}">Edit</a>
                             </div>
                             <form action="{{route('posts.destroy', $post->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm m-1">Delete</button>
                             </form>
                         </td>
-                        <td>{{$post->created_at->diffForHumans()}}</td>
-                        <td>{{$post->updated_at->diffForHumans()}}</td>
                     </tr>
                 @endforeach
             @else

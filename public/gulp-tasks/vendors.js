@@ -14,9 +14,9 @@ gulp.task('clean:vendors', function () {
 /*Building vendor scripts needed for basic template rendering*/
 gulp.task('buildBaseVendorScripts', function() {
     return gulp.src([
-        './node_modules/jquery/dist/jquery.min.js', 
+        './node_modules/jquery/dist/jquery.min.js',
         // './node_modules/popper.js/dist/umd/popper.min.js',
-        './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', 
+        './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
         './node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js'
     ])
       .pipe(concat('vendor.bundle.base.js'))
@@ -37,7 +37,7 @@ gulp.task('buildOptionalVendorScripts', function() {
     var aScript2 = gulp.src(['node_modules/jquery-bar-rating/dist/jquery.barrating.min.js'])
         .pipe(gulp.dest('./assets/vendors/jquery-bar-rating'));
     var aScript3 = gulp.src(['node_modules/jquery-sparkline/jquery.sparkline.min.js'])
-        .pipe(gulp.dest('./assets/vendors/jquery-sparkline')); 
+        .pipe(gulp.dest('./assets/vendors/jquery-sparkline'));
     var aScript4 = gulp.src(['node_modules/progressbar.js/dist/progressbar.min.js'])
         .pipe(gulp.dest('./assets/vendors/progressbar.js'));
     var aScript5 = gulp.src(['node_modules/moment/moment.js'])
@@ -127,7 +127,7 @@ gulp.task('buildOptionalVendorScripts', function() {
     var aScript47 = gulp.src(['node_modules/jquery-steps/build/jquery.steps.min.js'])
         .pipe(gulp.dest('./assets/vendors/jquery-steps'));
     var aScript48 = gulp.src(['node_modules/jquery-mapael/js/jquery.mapael.min.js'])
-        .pipe(gulp.dest('./assets/vendors/jquery-mapael'));   
+        .pipe(gulp.dest('./assets/vendors/jquery-mapael'));
     var aScript49 = gulp.src(['node_modules/jquery-mapael/js/maps/france_departments.min.js'])
         .pipe(gulp.dest('./assets/vendors/jquery-mapael'));
     var aScript50 = gulp.src(['node_modules/jquery-mapael/js/maps/world_countries.min.js'])
@@ -167,7 +167,7 @@ gulp.task('buildOptionalVendorScripts', function() {
     var aScript67 = gulp.src(['node_modules/jquery.avgrund/jquery.avgrund.min.js'])
         .pipe(gulp.dest('./assets/vendors/jquery.avgrund'));
     var aScript68 = gulp.src(['node_modules/nouislider/distribute/nouislider.min.js'])
-        .pipe(gulp.dest('./assets/vendors/nouislider')); 
+        .pipe(gulp.dest('./assets/vendors/nouislider'));
     var aScript69 = gulp.src(['node_modules/ion-rangeslider/js/ion.rangeSlider.min.js'])
         .pipe(gulp.dest('./assets/vendors/ion-rangeslider/js'));
     var aScript70 = gulp.src(['./node_modules/tinymce/**/*'])
@@ -201,7 +201,7 @@ gulp.task('buildOptionalVendorStyles', function() {
     var aStyle9 = gulp.src(['./node_modules/ti-icons/css/themify-icons.css'])
         .pipe(gulp.dest('./assets/vendors/ti-icons/css'));
     var aStyle10 = gulp.src(['./node_modules/ti-icons/fonts/*'])
-        .pipe(gulp.dest('./assets/vendors/ti-icons/fonts'));         
+        .pipe(gulp.dest('./assets/vendors/ti-icons/fonts'));
     var aStyle11 = gulp.src(['node_modules/fullcalendar/dist/fullcalendar.min.css'])
         .pipe(gulp.dest('./assets/vendors/fullcalendar'));
     var aStyle12 = gulp.src(['node_modules/c3/c3.min.css'])
@@ -249,7 +249,7 @@ gulp.task('buildOptionalVendorStyles', function() {
     var aStyle33 = gulp.src(['node_modules/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css'])
         .pipe(gulp.dest('./assets/vendors/x-editable'));
     var aStyle34 = gulp.src(['node_modules/select2/dist/css/select2.min.css'])
-        .pipe(gulp.dest('./assets/vendors/select2')); 
+        .pipe(gulp.dest('./assets/vendors/select2'));
     var aStyle35 = gulp.src(['node_modules/select2-bootstrap-theme/dist/select2-bootstrap.min.css'])
         .pipe(gulp.dest('./assets/vendors/select2-bootstrap-theme'));
     var aStyle36 = gulp.src(['node_modules/codemirror/lib/codemirror.css'])
@@ -263,7 +263,7 @@ gulp.task('buildOptionalVendorStyles', function() {
     var aStyle40 = gulp.src(['node_modules/simplemde/dist/simplemde.min.css'])
         .pipe(gulp.dest('./assets/vendors/simplemde'));
     var aStyle41 = gulp.src(['node_modules/jvectormap/jquery-jvectormap.css'])
-        .pipe(gulp.dest('./assets/vendors/jvectormap')); 
+        .pipe(gulp.dest('./assets/vendors/jvectormap'));
     var aStyle42 = gulp.src(['node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'])
         .pipe(gulp.dest('./assets/vendors/datatables.net-bs4'));
     var aStyle43 = gulp.src(['node_modules/jsgrid/dist/jsgrid.min.css'])
@@ -277,7 +277,7 @@ gulp.task('buildOptionalVendorStyles', function() {
     var aStyle47 = gulp.src(['node_modules/owl-carousel-2/assets/owl.video.play.png'])
         .pipe(gulp.dest('./assets/vendors/owl-carousel-2'));
     var aStyle48 = gulp.src(['node_modules/dragula/dist/dragula.min.css'])
-        .pipe(gulp.dest('./assets/vendors/dragula')); 
+        .pipe(gulp.dest('./assets/vendors/dragula'));
     var aStyle49 = gulp.src(['node_modules/jquery-toast-plugin/dist/jquery.toast.min.css'])
         .pipe(gulp.dest('./assets/vendors/jquery-toast-plugin'));
     var aStyle50 = gulp.src(['node_modules/nouislider/distribute/nouislider.min.css'])

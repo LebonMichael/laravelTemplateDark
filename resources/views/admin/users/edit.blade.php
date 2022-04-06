@@ -1,49 +1,79 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-12">
-        <h1>Update User</h1>
-        <div class="row">
-            <div class="col-8 img-thumbnail">
-                @include('includes.form_error')
-                {!! Form::open(['method' => 'patch', 'action' => ['App\Http\Controllers\AdminUsersController@update',$user->id] , 'files' => true]) !!}
-                <div class="form-group">
-                    {!! Form::label('name',' Name:') !!}
-                    {!! Form::text('name', $user->name, ['class' =>'form-control']) !!}
+        <div class="border border-2 rounded-3 my-3">
+            <h1 class="text-center">Edit User</h1>
+        </div>
+        <div class="row py-3">
+            <div class="col-8 offset-2 img-thumbnail">
+                <div class="row">
+                    <div class="col-8">
+                        @include('includes.form_error')
+                        <form action="{{route('users.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+                            <div class="form-group">
+                                <label class="text-black" for="name">Name:</label>
+                                <input value="{{$user->name}}" type="text" name="name" id="title"
+                                       class="form-control bg-black"
+                                       placeholder="{{$user->name}}">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-black" for="email">E-mail:</label>
+                                <input value="{{$user->email}}" type="text" name="email" id="title"
+                                       class="form-control bg-black"
+                                       placeholder="{{$user->email}}">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-black" for="role">Role: (CTRL + CLICK multiple select)</label>
+                                <select name="roles[]" class="form-control custom-select bg-black" multiple>
+                                    @foreach($roles as $role)
+                                        <option value="{{$role->id}}"
+                                                @if($user->roles->contains($role->id)) selected @endif>
+                                            {{$role->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-black" for="is_active">Status:</label>
+                                <select name="is_active" class="form-select bg-black text-white">
+                                    <option value="1" >
+                                        Active
+                                    </option>
+                                    <option value="0">
+                                        Not Active
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-black" for="email">Password:</label>
+                                <input value="" type="password" name="password" id="password"
+                                       class="form-control bg-black"
+                                       placeholder="Password...">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-black me-3" for="file">Profile Photo:</label>
+                                <div class="col-lg-12 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Your so fresh input file — Default version</h4>
+                                            <input type="file" name="photo_id" class="dropify" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Edit User</button>
+                        </form>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-black">Profile Photo:</p>
+                        <img class="img-fluid img-thumbnail"
+                             src="{{$user->photo ? asset('img/users') . $user->photo->file : 'https://via.placeholder.com/500'}}"
+                             alt="{{$user->name}}">
+                    </div>
                 </div>
-                <div class="form-group">
-                    {!! Form::label('email',' E-mail:') !!}
-                    {!! Form::text('email', $user->email, ['class' =>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('Select roles: (CTRL + Click multiple') !!}
-                    {!! Form::select('roles[]', $roles,$user->roles->pluck('id')->toArray(),['class' =>'form-control','multiple'=>'multiple']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('is_active','Status:') !!}
-                    {!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'),$user->is_active,['class' =>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('password',' Password:') !!}
-                    {!! Form::password('password',['class' =>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('photo_id',' Photo:') !!}
-                    {!! Form::file('photo_id',null,['class' =>'form-control']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::submit('Update User', ['class' => 'btn btn-primary']) !!}
-                </div>
-                {!! Form::close() !!}
-                {!! Form::open(['method'=>'DELETE', 'action'=>['App\Http\Controllers\AdminUsersController@destroy',$user->id]]) !!}
-                {!! Form::submit('Delete User', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
 
             </div>
-            <div class="col-4">
-                <img class="img-fluid img-thumbnail"
-                     src="{{$user->photo ? asset($user->photo->file) : 'https://via.placeholder.com/500'}}"
-                     alt="{{$user->name}}">
-            </div>
         </div>
-    </div>
 @endsection
