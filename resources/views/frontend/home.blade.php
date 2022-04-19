@@ -63,11 +63,11 @@
                         <h1 class="mb-md-3">Welcome to Watches Shop</h1>
                         <div class="col-md-2 col-sm-6 order-2 order-md-1">
                             <div>
-                                <img src="asset/images/sale.png" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/sale.png')}}" class="img-fluid" alt="">
                             </div>
                             <div class=" text-center ">
-                                <img src="asset/images/solden-1.jpg" class="img-fluid" alt="">
-                                <img src="asset/images/solden-2.jpg" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/solden-1.jpg')}}" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/solden-2.jpg')}}" class="img-fluid" alt="">
                             </div>
                         </div>
                         <div class="col-md-8 order-1 order-md-2 mx-auto my-lg-3 my-xl-5 my-sm-4 mb-sm-0 mb-3">
@@ -96,11 +96,11 @@
                         </div>
                         <div class="col-md-2 col-sm-6 order-3 order-md-3 d-none d-md-inline">
                             <div class="d-none d-md-inline">
-                                <img src="asset/images/sale.png" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/sale.png')}}" class="img-fluid" alt="">
                             </div>
                             <div class="text-center">
-                                <img src="asset/images/solden-1.jpg" class="img-fluid" alt="">
-                                <img src="asset/images/solden-2.jpg" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/solden-1.jpg')}}" class="img-fluid" alt="">
+                                <img src="{{asset('img/solden/solden-2.jpg')}}" class="img-fluid" alt="">
                             </div>
                         </div>
                     </div>
