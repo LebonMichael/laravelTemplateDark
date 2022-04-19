@@ -74,10 +74,12 @@
                             <div id="carouselExampleControls" class="carousel slide " data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="asset/images/car1.jpg" class=" w-100 img-fluid" alt="rolex">
+                                        <img  src="{{asset('img/headImage/headimage1.jpg')}}"
+                                              class="w-100 img-fluid" alt="rolex">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="asset/images/car2.jpg" class="w-100 img-fluid" alt="rolex">
+                                        <img  src="{{asset('img/headImage/headimage2.jpg')}}"
+                                              class="w-100 img-fluid" alt="rolex">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
@@ -204,7 +206,7 @@
 
                     <div class="tab-content" id="myTabContent">
                         @if($brand->product)
-                            @foreach($products as $product)
+                            @foreach($brand->product as $product)
                                 <div class="tab-pane fade show" id="{{$brand->name}}" role="tabpanel"
                                      aria-labelledby="{{$brand->name}}-tab">
                                     <div class="row row-cols-lg-3 row-cols-sm-2 my-5">
