@@ -2,7 +2,7 @@
 @section('content')
     <div class="col-12">
         <div class="border border-2 rounded-3 my-3">
-            <h1 class="text-center">Create brand</h1>
+            <h1 class="text-center">Create Brand</h1>
         </div>
         <div class="col-4 offset-4 img-thumbnail">
             @include('includes.form_error')

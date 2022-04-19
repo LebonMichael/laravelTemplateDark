@@ -11,8 +11,8 @@ class Brand extends Model
 
     protected $guarded = ['id'];
 
-    public function products(){
-        return $this->hasMany(Product::class);
+    public function product(){
+        return $this->belongsTo(Product::class);
     }
     public function photo(){
         return $this->belongsTo(Photo::class);

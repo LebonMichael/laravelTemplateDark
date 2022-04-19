@@ -2,12 +2,14 @@
 @section('content')
     <div class="col-12">
         @include('includes.form_error')
-        <div class="card mb-3" style="width:540px;">
+        <div class="card mb-3" style="width:auto;">
             <div class="row no-gutters">
-                <div class="col-md-12 align-items-stretch">
-                    <img class="img-fluid"
-                         src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
-                         alt="{{$product->name}}">
+                <div class="col-md-4">
+                    <div class="m-3 align-items-stretch">
+                        <img class="img-fluid img-thumbnail"
+                             src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
+                             alt="{{$product->name}}">
+                    </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,9 +16,11 @@ class FrontendHomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $products = Product::all();
-        return view('frontend.home', compact('users','products'));
+        $users = User::all()->load(['photo']);
+        $products = Product::all()->load(['photo']);
+        $brands = Brand::all()->load(['photo','product']);
+
+        return view('frontend.home', compact('users','products','brands'));
     }
 
     /**

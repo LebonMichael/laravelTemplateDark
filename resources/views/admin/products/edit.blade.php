@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-12">
-        <h1 class="text-center">Edit Product</h1>
-        <div class="row">
-            <div class="col-10 offset-1 img-thumbnail">
-                @include('includes.form_error')
+        <div class="border border-2 rounded-3 my-3">
+            <h1 class="text-center">Edit Product</h1>
+        </div>
+        <div class="row py-3">
+            <div class="col-8 offset-2 img-thumbnail">
                 <div class="row">
                     <div class="col-8">
+                        @include('includes.form_error')
                         <form action="{{route('products.update', $product->id)}}" method="POST"
                               enctype="multipart/form-data">
                             @csrf
@@ -46,16 +48,25 @@
                             </div>
                             <div class="form-group">
                                 <label class="text-black" for="description">Desciption:</label>
-                                <textarea class="form-control bg-black" name="description" id="description" cols="100%" rows="10"
+                                <textarea class="form-control bg-black" name="description" id="description" cols="100%"
+                                          rows="10"
                                           placeholder="{{$product->description}}">{{$product->description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label class="text-black" for="stock">Stock:</label>
-                                <input value="{{$product->stock}}" type="number" name="stock" id="stock" class="form-control bg-black" placeholder="Stock...">
+                                <input value="{{$product->stock}}" type="number" name="stock" id="stock"
+                                       class="form-control bg-black" placeholder="Stock...">
                             </div>
                             <div class="form-group">
                                 <label class="text-black me-3" for="file">Product Photo:</label>
-                                <input type="file" name="photo_id" id="ChooseFile">
+                                <div class="col-lg-12 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Your Product Picture</h4>
+                                            <input type="file" name="photo_id" class="dropify" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Product</button>
                         </form>

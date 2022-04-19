@@ -46,7 +46,7 @@
                     <button type="submit" class="btn btn-primary">Add Post</button>
                 </form>
             </div>
-            <div class="col-6">
+            <div class="col-6 ">
                 <label for="">Featured Image</label>
                 <br>
                 <img class="img-fluid img-thumbnail my-3"

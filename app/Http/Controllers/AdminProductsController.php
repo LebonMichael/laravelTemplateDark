@@ -189,4 +189,6 @@ class AdminProductsController extends Controller
         $mainUser = User::findOrFail($id);
         return view('admin.products.index', compact('products', 'brands','mainUser'));
     }
+
+
 }

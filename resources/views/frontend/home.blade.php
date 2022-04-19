@@ -112,68 +112,24 @@
                                 <div class="carousel-inner ">
                                     <div class="carousel-item active">
                                         <div class="row row-cols-md-5 row-cols-2">
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-1.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-2.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-3.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg"
-                                                     class="img-fluid p-0 p-2 d-md-inline d-none" alt="...">
-                                            </a>
+                                            @foreach($brands->random(5)->take(5) as $brand)
+                                                <a href="asset/pages/producten.html">
+                                                    <img class="img-fluid p-0 p-2" height="62" width="auto"
+                                                         src="{{$brand->photo ? asset('img/brands') . $brand->photo->file : 'https://via.placeholder.com/62'}}"
+                                                         alt="{{$brand->name}}">
+                                                </a>
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <div class="row row-cols-md-5 row-cols-2">
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-1.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-2.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-3.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg"
-                                                     class="img-fluid p-0 p-2 d-md-inline d-none" alt="...">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="row row-cols-md-5 row-cols-2">
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-1.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-2.jpg" class="img-fluid p-0 p-2 "
-                                                     alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-3.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg" class="img-fluid p-0 p-2" alt="...">
-                                            </a>
-                                            <a href="asset/pages/producten.html">
-                                                <img src="asset/images/brand-4.jpg"
-                                                     class="img-fluid p-0 p-2 d-md-inline d-none" alt="...">
-                                            </a>
+                                            @foreach($brands->random(5)->take(5) as $brand)
+                                                <a href="asset/pages/producten.html">
+                                                    <img class="img-fluid p-0 p-2" height="62" width="auto"
+                                                         src="{{$brand->photo ? asset('img/brands') . $brand->photo->file : 'https://via.placeholder.com/62'}}"
+                                                         alt="{{$brand->name}}">
+                                                </a>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -181,15 +137,16 @@
                         </div>
                     </div>
                 </section>
+
                 <section>
                     @foreach($products as $product)
                         <div class="row row-cols-sm-3 my-lg-5 my-sm-3 ">
                             <div class="text-center d-none d-sm-block my-2 img-place">
                                 <a href="asset/pages/product.html" class="text-decoration-none text-black">
                                     <div class=" text-center img-place">
-                                            <img class="img-fluid p-0"
-                                                 src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
-                                                 alt="{{$product->name}}">
+                                        <img class="img-fluid p-0"
+                                             src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
+                                             alt="{{$product->name}}">
                                         <div class="img-text">
                                             <h2 class="fw-bold">HUGO BOSS</h2>
                                         </div>
@@ -199,9 +156,10 @@
                                     </div>
                                 </a>
                             </div>
-                            </div>
+                        </div>
                     @endforeach
                 </section>
+
                 <section id="newArrivals">
                     <div class="row">
                         <div class="text-center mt-md-0 mt-5">
@@ -209,50 +167,21 @@
                             <p>You can follow the latest new products added to my website from here.</p>
                         </div>
                         <div class="row row-cols-lg-4 row-cols-md-2 my-5 m-0">
-                            <a href="asset/pages/product.html" class="text-decoration-none text-black">
-                                <div class="text-center my-2 img-place">
-                                    <img src="asset/images/hugo-boss-350x250.png" class="img-fluid " alt="">
-                                    <div class="img-text">
-                                        <h2 class="fw-bold">HUGO BOSS</h2>
+                            @foreach($products->take(4) as $product)
+                                <a href="asset/pages/product.html" class="text-decoration-none text-black">
+                                    <div class="text-center my-2 img-place">
+                                        <img class="img-fluid p-0"
+                                             src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
+                                             alt="{{$product->name}}">
+                                        <div class="">
+                                            <h2 class="fw-bold">{{$product->name}}</h2>
+                                        </div>
+                                        <div class="">
+                                            <p>€{{$product->price}}</p>
+                                        </div>
                                     </div>
-                                    <div class="img-text2">
-                                        <p>€390.00</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="asset/pages/product.html" class="text-decoration-none text-black">
-                                <div class="text-center my-2 img-place">
-                                    <img src="asset/images/hugo-boss-350x250.png" class="img-fluid " alt="">
-                                    <div class="img-text">
-                                        <h2 class="fw-bold">HUGO BOSS</h2>
-                                    </div>
-                                    <div class="img-text2">
-                                        <p>€390.00</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="asset/pages/product.html" class="text-decoration-none text-black">
-                                <div class="text-center my-2 img-place">
-                                    <img src="asset/images/hugo-boss-350x250.png" class="img-fluid " alt="">
-                                    <div class="img-text">
-                                        <h2 class="fw-bold">HUGO BOSS</h2>
-                                    </div>
-                                    <div class="img-text2">
-                                        <p>€390.00</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="asset/pages/product.html" class="text-decoration-none text-black">
-                                <div class="text-center my-2 img-place">
-                                    <img src="asset/images/hugo-boss-350x250.png" class="img-fluid " alt="">
-                                    <div class="img-text">
-                                        <h2 class="fw-bold">HUGO BOSS</h2>
-                                    </div>
-                                    <div class="img-text2">
-                                        <p>€390.00</p>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </section>
@@ -262,43 +191,35 @@
             <section id="tab-watches">
                 <div class="col-lg-10 offset-lg-1 mt-5 ">
                     <ul class="nav nav-tabs  justify-content-center" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="calvinKlein-tab" data-bs-toggle="tab"
-                                    data-bs-target="#calvinKlein" type="button" role="tab" aria-controls="calvinKlein"
-                                    aria-selected="true">Calvin Klein
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="bulova-tab" data-bs-toggle="tab" data-bs-target="#bulova"
-                                    type="button" role="tab" aria-controls="bulova" aria-selected="false">Bulova
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="casio-tab" data-bs-toggle="tab" data-bs-target="#casio"
-                                    type="button" role="tab" aria-controls="casio" aria-selected="false">Casio
-                            </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="adidas-tab" data-bs-toggle="tab" data-bs-target="#adidas"
-                                    type="button" role="tab" aria-controls="adidas" aria-selected="false">Adidas
-                            </button>
-                        </li>
+                        @foreach($brands as $brand)
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="{{$brand->name}}-tab" data-bs-toggle="tab"
+                                        data-bs-target="#{{$brand->name}}" type="button" role="tab"
+                                        aria-controls="{{$brand->name}}"
+                                        aria-selected="true">{{$brand->name}}
+                                </button>
+                            </li>
+                        @endforeach
                     </ul>
+
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="calvinKlein" role="tabpanel"
-                             aria-labelledby="calvinKlein-tab">
-                            <div class="row row-cols-lg-3 row-cols-sm-2 my-5">
-                                <div class="my-2">
-                                    <img src="asset/images/river-island-1.jpg" class="img-fluid" alt="river island">
+                        @if($brand->product)
+                            @foreach($products as $product)
+                                <div class="tab-pane fade show" id="{{$brand->name}}" role="tabpanel"
+                                     aria-labelledby="{{$brand->name}}-tab">
+                                    <div class="row row-cols-lg-3 row-cols-sm-2 my-5">
+                                        @foreach($products as $product)
+                                            <div class="my-2">
+                                                <img
+                                                    src="{{$product->photo ? asset('img/products') . $product->photo->file : 'http://via.placeholder.com/400x400'}}"
+                                                    alt="{{$product->name}}" class="img-fluid">
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="my-2">
-                                    <img src="asset/images/multie-watches-1.jpg" class="img-fluid" alt="river island">
-                                </div>
-                                <div class="my-2">
-                                    <img src="asset/images/multie-watches-3.jpg" class="img-fluid" alt="river island">
-                                </div>
-                            </div>
-                        </div>
+
+                            @endforeach
+                        @endif
                         <div class="tab-pane fade" id="bulova" role="tabpanel" aria-labelledby="bulova-tab">
                             <div class="row row-cols-lg-3 row-cols-sm-2 my-5">
                                 <div class="my-2">
@@ -385,7 +306,8 @@
                                 <div class="mb-3 ">
                                     <p class="text-white fw-bold m-0">Stay up to date with DISCOUNT...</p>
                                     <label for="exampleInputEmail1" class="form-label"></label>
-                                    <input type="email" placeholder="Your email address" class="form-control w-50 mx-auto"
+                                    <input type="email" placeholder="Your email address"
+                                           class="form-control w-50 mx-auto"
                                            id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                     </div>
@@ -431,15 +353,19 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#AvailableServices" data-bs-toggle="modal" data-bs-target="#AvailableServices">Available
+                                    <a href="#AvailableServices" data-bs-toggle="modal"
+                                       data-bs-target="#AvailableServices">Available
                                         Services</a>
                                     <!-- Modal -->
                                     <div class="modal fade" id="AvailableServices" tabindex="-1"
@@ -453,9 +379,12 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
@@ -473,9 +402,12 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
@@ -490,14 +422,18 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleDeliveryInfo">Delivery Inforamtion</h5>
+                                                    <h5 class="modal-title" id="exampleDeliveryInfo">Delivery
+                                                        Inforamtion</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
@@ -512,14 +448,18 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="examplePrivacyPolicy">Privacy Policy</h5>
+                                                    <h5 class="modal-title" id="examplePrivacyPolicy">Privacy
+                                                        Policy</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
@@ -543,9 +483,12 @@
                                                             aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet animi
-                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam minima
-                                                        necessitatibus quaerat quis ratione repellat repudiandae sed voluptatem
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab amet
+                                                        animi
+                                                        dicta distinctio ducimus earum, eligendi est ipsam labore magnam
+                                                        minima
+                                                        necessitatibus quaerat quis ratione repellat repudiandae sed
+                                                        voluptatem
                                                         voluptatum!</p>
                                                 </div>
                                             </div>
@@ -558,12 +501,14 @@
                                 <form method="post" action="mailto:lebontje45@hotmail.com">
                                     <div class="input-group mb-3">
                                         <label for="firstName"></label>
-                                        <input id="firstName" name="FirstName" value="" type="text" placeholder="First name"
+                                        <input id="firstName" name="FirstName" value="" type="text"
+                                               placeholder="First name"
                                                aria-label="First name" class="form-control">
                                     </div>
                                     <div class="input-group mb-3">
                                         <label for="lastName"></label>
-                                        <input id="lastName" name="LastName" value="" type="text" placeholder="Last name"
+                                        <input id="lastName" name="LastName" value="" type="text"
+                                               placeholder="Last name"
                                                aria-label="Last name" class="form-control">
                                     </div>
                                     <div class="input-group mb-3">
@@ -635,7 +580,7 @@
 
 </footer>
 
-<script src="{{asset('asset/js/jsfront/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/jsfront/bootstrap.min.js')}}"></script>
 
 </body>
 </html>

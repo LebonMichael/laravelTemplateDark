@@ -25,8 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $users = User::with(['photo']);
         $id = Auth::user()->id;
         $mainUser = User::findOrFail($id);
-        return view('admin.index', compact('mainUser'));
+        return view('admin.index', compact('users','mainUser'));
     }
 }
